@@ -1473,7 +1473,7 @@ ej_wl_auth_list(int eid, webs_t wp, int argc, char **argv)
 	return ret;
 }
 
-
+#define SSURV_LINE_LEN5G		(4+33+20+23+9+7+7+3)
 #define SSURV_LINE_LEN		(4+33+20+23+9+9+7+3)		// Channel+SSID+Bssid+Security+Signal+WiressMode+ExtCh+NetworkType
 #define SSURV_LINE_LEN_WPS	(4+33+20+23+9+7+7+3+4+5)	// Channel+SSID+Bssid+Security+Signal+WiressMode+ExtCh+NetworkType+WPS+PIN
 
@@ -1488,7 +1488,7 @@ ej_wl_scan_5g(int eid, webs_t wp, int argc, char **argv)
 #if defined (USE_WSC_WPS)
 	char site_line[SSURV_LINE_LEN_WPS+1];
 #else
-	char site_line[SSURV_LINE_LEN+1];
+	char site_line[SSURV_LINE_LEN5G+1];
 #endif
 	char site_chnl[4];
 	char site_ssid[34];
@@ -1527,7 +1527,7 @@ ej_wl_scan_5g(int eid, webs_t wp, int argc, char **argv)
 #if defined (USE_WSC_WPS)
 	line_len = SSURV_LINE_LEN_WPS;
 #else
-	line_len = SSURV_LINE_LEN;
+	line_len = SSURV_LINE_LEN5G;
 #endif
 
 	retval += websWrite(wp, "[");
